@@ -1,0 +1,9 @@
+.about {
+}
+
+img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    border: 10px solid rgba(0, 0, 0, 0);
+}
