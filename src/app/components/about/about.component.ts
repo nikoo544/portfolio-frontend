@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user';
+import { PersonaService } from 'src/app/services/persona.service';
 
 @Component({
   selector: 'app-about',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private personaService: PersonaService) { }
+  nombre:string = "";
+  sobremi:string = "";
 
   ngOnInit(): void {
+    
+  this.mostrarDatos("1");
+  }
+  
+  mostrarDatos(id: string){
+    this.personaService.getUser(id).subscribe(data => {
+      this.nombre = data.nombre;
+      this.sobremi = data.sobreMi;
+      console.log(data)
+      return data;
+    });
   }
 
 }
