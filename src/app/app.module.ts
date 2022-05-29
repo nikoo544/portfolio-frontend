@@ -13,6 +13,7 @@ import { ProjectCardComponent } from './components/project-card/project-card.com
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EducacionComponent } from './components/educacion/educacion.component';
+import { ExperienciaComponent } from './components/experiencia/experiencia.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { EducacionComponent } from './components/educacion/educacion.component';
     LoginComponent,
     ProjectCardComponent,
     EducacionComponent,
+    ExperienciaComponent,
   ],
   imports: [
     BrowserModule,
