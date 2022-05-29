@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AboutComponent } from './components/about/about.component';
-import { ListComponent } from './components/list/list.component';
 import { SkillsComponent } from './components/skills/skills.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { LoginComponent } from './components/login/login.component';
@@ -19,7 +18,6 @@ import { ExperienciaComponent } from './components/experiencia/experiencia.compo
     AppComponent,
     HeaderComponent,
     AboutComponent,
-    ListComponent,
     SkillsComponent,
     ProjectsComponent,
     LoginComponent,
