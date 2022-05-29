@@ -1,7 +1,14 @@
-<div class="flex justify-around items-center h-96 bg-slate-600 mx-5 rounded-md mb-10 text-[3rem] text-white">
-<span>🌼</span>
-<span>🌼</span>
-<span>🌼</span>
-<span>🌼</span>
-<span>🌼</span>
+<div class="flex justify-around items-center h-96 bg-slate-600 mx-5 
+rounded-md mb-10 text-[3rem] text-white">
+<h1>Skills</h1>
+<div class="m-5" *ngFor="let skill of list" >
+    
+    <div>
+        <h3>{{skill.nombre}}</h3>
+        <p>{{skill.porcentaje}}</p>
+      </div>
+      
+
+</div>
+
 </div>
