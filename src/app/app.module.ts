@@ -12,6 +12,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProjectCardComponent } from './components/project-card/project-card.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { EducacionComponent } from './components/educacion/educacion.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     ProjectsComponent,
     LoginComponent,
     ProjectCardComponent,
+    EducacionComponent,
   ],
   imports: [
     BrowserModule,
