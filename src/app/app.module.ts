@@ -9,7 +9,6 @@ import { ListComponent } from './components/list/list.component';
 import { SkillsComponent } from './components/skills/skills.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { LoginComponent } from './components/login/login.component';
-import { ProjectCardComponent } from './components/project-card/project-card.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EducacionComponent } from './components/educacion/educacion.component';
@@ -24,7 +23,6 @@ import { ExperienciaComponent } from './components/experiencia/experiencia.compo
     SkillsComponent,
     ProjectsComponent,
     LoginComponent,
-    ProjectCardComponent,
     EducacionComponent,
     ExperienciaComponent,
   ],
