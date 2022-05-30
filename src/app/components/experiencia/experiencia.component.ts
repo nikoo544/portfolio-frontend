@@ -21,12 +21,21 @@ export class ExperienciaComponent implements OnInit {
 
   ngOnInit(): void {
     this.experienciaService.getLista().subscribe(list => this.list = list);
+    
+  }
+
+  getExperiencia():void{
+    this.experienciaService.getLista().subscribe(list => this.list = list);
+  }
+
+  onDeleteExperiencia(id:any){
+    this.experienciaService.deleteExperiencia(this.list[id].id).subscribe(() => this.getExperiencia());
   }
 
   deleteExp(id:string){ 
     this.experienciaService.deleteExperiencia(id).subscribe(res => {
       if(res.ok){
-        this.experienciaService.getLista().subscribe(list => this.list = list);
+        this.getExperiencia();
       }
       else {
         console.log(res.error);

@@ -11,24 +11,25 @@ export class EducacionService {
   url='https://agile-atoll-19905.herokuapp.com/api/educacion';
   constructor(private http:HttpClient) {}
 
-    getLista():Observable<any> {
-      return this.http.get(this.url);
+    getLista():Observable<Educacion[]> {
+      return this.http.get<Educacion[]>(this.url);
     }
 
-    getEducacion(id: string):Observable<any> {
-      return this.http.get(this.url + "/" + id);
+    getEducacion(id: string):Observable<Educacion> {
+      return this.http.get<Educacion>(this.url + "/" + id);
     }
 
-    editEducacion(id:string, educacion: Educacion):Observable<any> {
-      return this.http.put(this.url, educacion);
+    editEducacion(id:string, educacion: Educacion):Observable<Educacion> {
+      return this.http.put<Educacion>(this.url, educacion);
     }
    
-    addEducacion(id:string, educacion: Educacion):Observable<any> {
-    return this.http.post(this.url, educacion);
+    addEducacion(id:string, educacion: Educacion):Observable<Educacion> {
+    return this.http.post<Educacion>(this.url, educacion);
     }
 
-    deleteEducacion(id:string):Observable<any> {
-      return this.http.delete(this.url + "/" + id);
+    deleteEducacion(id:string):Observable<void> {
+      return this.http.delete<void>(this.url + "/" + id);
     }
 
 }
+

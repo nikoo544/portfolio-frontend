@@ -9,32 +9,22 @@ import { Educacion } from 'src/app/models/Educacion';
 })
 export class EducacionComponent implements OnInit {
 
-    id:string = "";
-    institucion:string = "";
-    titulo:string = "";
-    fechaInicio:string = "";
-    fechaFin:string = "";
-
     list:Educacion[] = [];
-
-
 
   constructor(private educacionService:EducacionService) { }
 
   ngOnInit(): void {
-   this.educacionService.getLista().subscribe(list => this.list = list);
+    
+    this.getEducacion();
+
   }
 
-  mostrarDatos(){
-  this.educacionService.getLista().subscribe(data => {
-    this.institucion = data.institucion;
-    this.titulo = data.titulo;
-    this.fechaInicio = data.fechaInicio;
-    this.fechaFin = data.fechaFin;
-    console.log(data)
-    return data
-  });
+  getEducacion():void{
+    this.educacionService.getLista().subscribe(list => this.list = list);
+  }
 
-}
+  onDeleteEducacion(){
+    this.educacionService.deleteEducacion(this.list[0].id).subscribe(() => this.getEducacion());
+  }
 
 }

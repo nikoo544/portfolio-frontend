@@ -19,26 +19,22 @@ export class SkillsComponent implements OnInit {
 
   }
 
-    actualizarlista(){
 
-      this.skillService.getLista().subscribe(data => this.list = data);
-
+    getSkill():void{
+      this.skillService.getLista().subscribe(list => this.list = list);
     }
 
-  eliminar(id:string){
+
+  deleteSkill(id:string){
       
       this.skillService.deleteSkill(id).subscribe(res => {
   
         if(res.ok){
-          this.actualizarlista();
+          this.getSkill();
+        } else {
+          console.log(res.error);
+          this.skillService.getLista().subscribe(list => this.list = list);
         }
-        else {
-
-            console.log(res.error);
-            this.skillService.getLista();
-
-        }
-  
       });
   
     }

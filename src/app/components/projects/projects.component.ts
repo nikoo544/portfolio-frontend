@@ -24,16 +24,17 @@ export class ProjectsComponent implements OnInit {
   }
 
   
+  getProject():void{
+    this.projectsService.getLista().subscribe(list => this.list = list);
+  }
 
-
-  eliminar(id:string){
+  deleteProject(id:string){
         
       this.projectsService.deleteProyecto(id).subscribe(res => {
     
         if(res.ok){
     
           this.list = this.list.filter(item => item.id != id);
-
           this.projectsService.getLista().subscribe(data => this.list = data);
     
         }
@@ -41,7 +42,7 @@ export class ProjectsComponent implements OnInit {
         else {
             
             console.log(res.error);
-    
+            this.getProject();
     
         }
     
