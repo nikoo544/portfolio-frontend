@@ -13,6 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { EducacionComponent } from './components/educacion/educacion.component';
 import { ExperienciaComponent } from './components/experiencia/experiencia.component';
 
+import { NgCircleProgressModule } from 'ng-circle-progress';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,16 @@ import { ExperienciaComponent } from './components/experiencia/experiencia.compo
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgCircleProgressModule.forRoot({
+      radius: 100,
+      outerStrokeWidth: 16,
+      innerStrokeWidth: 8,
+      outerStrokeColor: "#78C000",
+      innerStrokeColor: "#C7E596",
+      animationDuration: 300,
+    })
+
   ],
   providers: [],
   bootstrap: [AppComponent]

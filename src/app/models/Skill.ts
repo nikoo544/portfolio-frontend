@@ -2,6 +2,6 @@ export interface Skill {
 
     id: string;
     nombre: string;
-    porcentaje: string;
+    porcentaje: number;
 
 }
