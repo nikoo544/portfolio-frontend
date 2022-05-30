@@ -19,4 +19,31 @@ export class SkillsComponent implements OnInit {
 
   }
 
+    actualizarlista(){
+
+      this.skillService.getLista().subscribe(data => this.list = data);
+
+    }
+
+  eliminar(id:string){
+      
+      this.skillService.deleteSkill(id).subscribe(res => {
+  
+        if(res.ok){
+
+          this.actualizarlista();
+  
+        }
+
+        else {
+            
+            console.log(res.error);
+            this.skillService.getLista();
+
+        }
+  
+      });
+  
+    }
+
 }
