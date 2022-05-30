@@ -15,11 +15,11 @@ export class EducacionService {
       return this.http.get<Educacion[]>(this.url);
     }
 
-    getEducacion(id: string):Observable<Educacion> {
+    getEducacion(id: string):Observable<any> {
       return this.http.get<Educacion>(this.url + "/" + id);
     }
 
-    editEducacion(id:string, educacion: Educacion):Observable<Educacion> {
+    editEducacion(id:string, educacion: Educacion):Observable<any> {
       return this.http.put<Educacion>(this.url, educacion);
     }
    

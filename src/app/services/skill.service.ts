@@ -20,7 +20,7 @@ export class SkillService {
   }
 
   editSkill(id:string, skill: Skill):Observable<any> {
-    return this.http.put(this.url, skill);
+    return this.http.put(this.url + "/" + id, skill);
   }
 
   addSkill( skill: Skill):Observable<any> {

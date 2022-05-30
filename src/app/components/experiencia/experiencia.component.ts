@@ -14,14 +14,17 @@ export class ExperienciaComponent implements OnInit {
   list:Experiencia[] = [];
 
   form: FormGroup;
+  
+  idx:string='';
 
   newForm:boolean = false;
+  editMode:boolean = false;
 
   constructor(private experienciaService:ExperienciaService) { 
 
     this.form= new FormGroup ({
-      nombre: new FormControl(['', [Validators.required, Validators.minLength(2)]]),
-      descripcion: new FormControl(['', [Validators.required, Validators.minLength(2)]]),
+      nombre: new FormControl(['']),
+      descripcion: new FormControl(['']),
       fechaInicio: new FormControl(['']),
       fechaFin: new FormControl([''])
     });
@@ -53,6 +56,45 @@ export class ExperienciaComponent implements OnInit {
     });
   }
 
+  
+  onEditExperiencia(id:string){
+
+    this.idx = id;
+    this.editMode=true;
+
+    this.experienciaService.getExperiencia(id).subscribe(res => {
+
+      if(res.ok){
+        this.form.setValue({
+          institucion: res.educacion.institucion,
+          titulo: res.educacion.titulo,
+          fechaInicio: res.educacion.fechaInicio,
+          fechaFin: res.educacion.fechaFin
+        })
+      }
+      else {
+        console.log(res.error);
+        this.experienciaService.getLista().subscribe(list => this.list = list);
+      }
+    });
+  }
+
+
+  onSaveEditExperiencia(id:string ){
+    console.log(id)
+    this.experienciaService.editExperiencia(id, this.form.value).subscribe(res => {
+      if(res.ok){
+        this.experienciaService.getLista().subscribe(list => this.list = list);
+      }
+      else {
+        console.log(res.error);
+        this.experienciaService.getLista().subscribe(list => this.list = list);
+      }
+    });
+  }
+
+  
+
   onCrear(){
 
     let objetoFormulario = this.form.controls;
@@ -78,6 +120,10 @@ export class ExperienciaComponent implements OnInit {
         this.experienciaService.getLista().subscribe(list => this.list = list);
       }
     });
+  }
+
+  onCancelEdit(){
+    this.editMode=false;
   }
 
   onCancelNuevaExp(){

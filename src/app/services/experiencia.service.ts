@@ -20,7 +20,7 @@ export class ExperienciaService {
   }
 
   editExperiencia(id:string, experiencia: Experiencia):Observable<any> {
-    return this.http.put(this.url, experiencia);
+    return this.http.put(this.url + "/" + id, experiencia);
   }
 
   addExperiencia(experiencia: Experiencia):Observable<any> {

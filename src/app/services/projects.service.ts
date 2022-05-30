@@ -20,7 +20,7 @@ export class ProjectsService {
   }
 
   editProyecto(id:string, proyecto: Proyecto):Observable<any> {
-    return this.http.put(this.url, proyecto);
+    return this.http.put(this.url + "/" + id, proyecto);
   }
 
   addProyecto(proyecto: Proyecto):Observable<any> {
