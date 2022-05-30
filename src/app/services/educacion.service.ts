@@ -23,8 +23,8 @@ export class EducacionService {
       return this.http.put<Educacion>(this.url, educacion);
     }
    
-    addEducacion(educacion: Educacion):Observable<Educacion> {
-    return this.http.post<Educacion>(this.url, educacion);
+    addEducacion(educacion: Educacion):Observable<any> {
+    return this.http.post(this.url, educacion);
     }
 
     deleteEducacion(id:string):Observable<void> {
