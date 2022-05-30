@@ -12,6 +12,9 @@ export class ProjectsComponent implements OnInit {
 
   list:Proyecto[] = [];
 
+  idx:string = '';
+  editMode:boolean = false;
+
   form: FormGroup;
 
   newForm:boolean = false;
@@ -98,6 +101,47 @@ export class ProjectsComponent implements OnInit {
     onCancelNuevoProyecto(){
       this.newForm=false;
     }
+
+    onEditProyecto(id:string){
+
+      this.idx = id;
+      this.editMode=true;
+  
+      this.projectsService.getProyecto(id).subscribe(res => {
+  
+        if(res.ok){
+          this.form.setValue({
+            institucion: res.educacion.institucion,
+            titulo: res.educacion.titulo,
+            fechaInicio: res.educacion.fechaInicio,
+            fechaFin: res.educacion.fechaFin
+          })
+        }
+        else {
+          console.log(res.error);
+          this.projectsService.getLista().subscribe(list => this.list = list);
+        }
+      });
+    }
+  
+  
+    onSaveEditProyecto(id:string ){
+      console.log(id)
+      this.projectsService.editProyecto(id, this.form.value).subscribe(res => {
+        if(res.ok){
+          this.projectsService.getLista().subscribe(list => this.list = list);
+        }
+        else {
+          console.log(res.error);
+          this.projectsService.getLista().subscribe(list => this.list = list);
+        }
+      });
+    }
+
+    onCancelNuevaProyecto(){
+      this.newForm=false;
+    }
+  
     
 
 }

@@ -20,7 +20,7 @@ export class EducacionService {
     }
 
     editEducacion(id:string, educacion: Educacion):Observable<any> {
-      return this.http.put<Educacion>(this.url, educacion);
+      return this.http.put<Educacion>(this.url + "/" + id, educacion);
     }
    
     addEducacion(educacion: Educacion):Observable<any> {

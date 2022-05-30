@@ -13,6 +13,9 @@ export class SkillsComponent implements OnInit {
 
   list:Skill[] = [];
 
+  idx:string = '';
+  editMode:boolean = false;
+
   form: FormGroup;
 
   newForm:boolean = false;
@@ -20,7 +23,7 @@ export class SkillsComponent implements OnInit {
   constructor(private skillService:SkillService) { 
 
     this.form= new FormGroup ({
-      nombre: new FormControl(['', [Validators.required, Validators.minLength(2)]]),
+      nombre: new FormControl(['']),
       porcentaje: new FormControl(['']),
     })
 
@@ -78,6 +81,47 @@ export class SkillsComponent implements OnInit {
     onCancelNuevoRegistro(){
       this.newForm=false;
     }
+
+    onEditSkill(id:string){
+
+      this.idx = id;
+      this.editMode=true;
+  
+      this.skillService.getSkill(id).subscribe(res => {
+  
+        if(res.ok){
+          this.form.setValue({
+            institucion: res.educacion.institucion,
+            titulo: res.educacion.titulo,
+            fechaInicio: res.educacion.fechaInicio,
+            fechaFin: res.educacion.fechaFin
+          })
+        }
+        else {
+          console.log(res.error);
+          this.skillService.getLista().subscribe(list => this.list = list);
+        }
+      });
+    }
+  
+  
+    onSaveEditSkill(id:string ){
+      console.log(id)
+      this.skillService.editSkill(id, this.form.value).subscribe(res => {
+        if(res.ok){
+          this.skillService.getLista().subscribe(list => this.list = list);
+        }
+        else {
+          console.log(res.error);
+          this.skillService.getLista().subscribe(list => this.list = list);
+        }
+      });
+    }
+
+    onCancelNuevaExp(){
+      this.newForm=false;
+    }
+  
   
 
 }

@@ -13,6 +13,7 @@ export class EducacionComponent implements OnInit {
 
     list:Educacion[] = [];
 
+    idx:string = '';
     form: FormGroup;
 
   newForm:boolean = false;
@@ -55,50 +56,6 @@ export class EducacionComponent implements OnInit {
     this.newForm=true;
   }
 
-
-  onEditEducacion(id:string){
-
-    this.editMode=true;
-    
-    this.educacionService.getEducacion(id).subscribe(res => {
-
-      if(res.ok){
-        this.form.setValue({
-          id: res.educacion.id,
-          institucion: res.educacion.institucion,
-          titulo: res.educacion.titulo,
-          fechaInicio: res.educacion.fechaInicio,
-          fechaFin: res.educacion.fechaFin
-        })
-      }
-      else {
-        this.form.setValue({
-          id: res.educacion.id,
-          institucion: res.educacion.institucion,
-          titulo: res.educacion.titulo,
-          fechaInicio: res.educacion.fechaInicio,
-          fechaFin: res.educacion.fechaFin
-        })
-      }
-    });
-  }
-
-  onSaveEditEducacion(event: Event ){
-    event.preventDefault;
-
-    this.educacionService.editEducacion(this.form.value.id, this.form.value).subscribe(res => {
-      if(res.ok){
-        this.getEducacion();
-      }
-      else {
-        console.log(res.error);
-        this.educacionService.getLista().subscribe(list => this.list = list);
-      }
-    });
-  }
-
-  
-
   onSaveNewEducacion(event: Event ){
     event.preventDefault;
 
@@ -114,6 +71,46 @@ export class EducacionComponent implements OnInit {
   }
 
   onCancelNuevaEdu(){
+    this.newForm=false;
+  }
+
+  onEditEducacion(id:string){
+
+    this.idx = id;
+    this.editMode=true;
+
+    this.educacionService.getEducacion(id).subscribe(res => {
+
+      if(res.ok){
+        this.form.setValue({
+          institucion: res.educacion.institucion,
+          titulo: res.educacion.titulo,
+          fechaInicio: res.educacion.fechaInicio,
+          fechaFin: res.educacion.fechaFin
+        })
+      }
+      else {
+        console.log(res.error);
+        this.educacionService.getLista().subscribe(list => this.list = list);
+      }
+    });
+  }
+
+
+  onSaveEditEducacion(id:string ){
+    console.log(id)
+    this.educacionService.editEducacion(id, this.form.value).subscribe(res => {
+      if(res.ok){
+        this.educacionService.getLista().subscribe(list => this.list = list);
+      }
+      else {
+        console.log(res.error);
+        this.educacionService.getLista().subscribe(list => this.list = list);
+      }
+    });
+  }
+
+  onCancelNuevaEducacion(){
     this.newForm=false;
   }
 
