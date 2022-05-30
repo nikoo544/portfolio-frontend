@@ -23,7 +23,7 @@ export class ProjectsService {
     return this.http.put(this.url, proyecto);
   }
 
-  addProyecto(id:string, proyecto: Proyecto):Observable<any> {
+  addProyecto(proyecto: Proyecto):Observable<any> {
     return this.http.post(this.url, proyecto);
   }
 

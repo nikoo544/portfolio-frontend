@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SkillService } from 'src/app/services/skill.service';
 import { Skill } from 'src/app/models/Skill';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-skills',
@@ -11,7 +13,18 @@ export class SkillsComponent implements OnInit {
 
   list:Skill[] = [];
 
-  constructor(private skillService:SkillService) { }
+  form: FormGroup;
+
+  newForm:boolean = false;
+
+  constructor(private skillService:SkillService) { 
+
+    this.form= new FormGroup ({
+      nombre: new FormControl(['', [Validators.required, Validators.minLength(2)]]),
+      porcentaje: new FormControl(['']),
+    })
+
+  }
 
   ngOnInit(): void {
 
@@ -39,4 +52,33 @@ export class SkillsComponent implements OnInit {
   
     }
 
+    onCrear(){
+      let objetoFormulario = this.form.controls;
+
+      let valueForms = Object.values(objetoFormulario);
+     
+      valueForms[0].setValue('');
+      valueForms[1].setValue('');
+      
+      this.newForm=true;
+    }
+
+    onSaveNewSkill(event: Event ){
+
+      event.preventDefault;
+
+      this.skillService.addSkill(this.form.value).subscribe(data => {
+        this.skillService.getLista().subscribe(list => this.list = list);
+      });
+  
+      this.newForm=false;
+    }
+
+  
+    onCancelNuevoRegistro(){
+      this.newForm=false;
+    }
+  
+
 }
+

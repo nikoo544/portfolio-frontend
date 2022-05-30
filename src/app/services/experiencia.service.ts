@@ -23,7 +23,7 @@ export class ExperienciaService {
     return this.http.put(this.url, experiencia);
   }
 
-  addExperiencia(id:string, experiencia: Experiencia):Observable<any> {
+  addExperiencia(experiencia: Experiencia):Observable<any> {
     return this.http.post(this.url, experiencia);
   }
 

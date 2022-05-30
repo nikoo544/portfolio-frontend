@@ -23,7 +23,7 @@ export class EducacionService {
       return this.http.put<Educacion>(this.url, educacion);
     }
    
-    addEducacion(id:string, educacion: Educacion):Observable<Educacion> {
+    addEducacion(educacion: Educacion):Observable<Educacion> {
     return this.http.post<Educacion>(this.url, educacion);
     }
 

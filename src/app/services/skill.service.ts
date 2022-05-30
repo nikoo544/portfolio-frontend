@@ -23,7 +23,7 @@ export class SkillService {
     return this.http.put(this.url, skill);
   }
 
-  addSkill(id:string, skill: Skill):Observable<any> {
+  addSkill( skill: Skill):Observable<any> {
     return this.http.post(this.url, skill);
   }
 
