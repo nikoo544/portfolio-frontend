@@ -22,9 +22,9 @@ export class ProjectsComponent implements OnInit {
   constructor(private projectsService:ProjectsService) { 
 
     this.form= new FormGroup ({
-      nombre: new FormControl(['', [Validators.required, Validators.minLength(2)]]),
-      descripcion: new FormControl(['', [Validators.required, Validators.minLength(2)]]),
-      urlFoto: new FormControl(['', [Validators.required, Validators.minLength(2)]]),
+      nombre: new FormControl(['']),
+      descripcion: new FormControl(['']),
+      urlFoto: new FormControl(['']),
     })
 
 
@@ -138,8 +138,8 @@ export class ProjectsComponent implements OnInit {
       });
     }
 
-    onCancelNuevaProyecto(){
-      this.newForm=false;
+    onCancelEdit(){
+      this.editMode=false;
     }
   
     

@@ -22,8 +22,8 @@ export class EducacionComponent implements OnInit {
   constructor(private educacionService:EducacionService) {
 
     this.form= new FormGroup ({
-      institucion: new FormControl(['', [Validators.required, Validators.minLength(2)]]),
-      titulo: new FormControl(['', [Validators.required, Validators.minLength(2)]]),
+      institucion: new FormControl(['']),
+      titulo: new FormControl(['']),
       fechaInicio: new FormControl(['']),
       fechaFin: new FormControl([''])
     })
@@ -70,8 +70,8 @@ export class EducacionComponent implements OnInit {
     });
   }
 
-  onCancelNuevaEdu(){
-    this.newForm=false;
+  onCancelEditEdu(){
+    this.editMode=false;
   }
 
   onEditEducacion(id:string){
@@ -110,7 +110,7 @@ export class EducacionComponent implements OnInit {
     });
   }
 
-  onCancelNuevaEducacion(){
+  onCancelNuevaEdu(){
     this.newForm=false;
   }
 
