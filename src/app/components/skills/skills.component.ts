@@ -30,13 +30,10 @@ export class SkillsComponent implements OnInit {
       this.skillService.deleteSkill(id).subscribe(res => {
   
         if(res.ok){
-
           this.actualizarlista();
-  
         }
-
         else {
-            
+
             console.log(res.error);
             this.skillService.getLista();
 

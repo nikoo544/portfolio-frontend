@@ -23,4 +23,16 @@ export class ExperienciaComponent implements OnInit {
     this.experienciaService.getLista().subscribe(list => this.list = list);
   }
 
+  deleteExp(id:string){ 
+    this.experienciaService.deleteExperiencia(id).subscribe(res => {
+      if(res.ok){
+        this.experienciaService.getLista().subscribe(list => this.list = list);
+      }
+      else {
+        console.log(res.error);
+        this.experienciaService.getLista().subscribe(list => this.list = list);
+      }
+    });
+  }
+
 }
