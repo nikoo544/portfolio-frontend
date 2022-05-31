@@ -16,7 +16,7 @@ export class PersonaService {
    }
 
    editUser(id:string, user: User):Observable<any> {
-    return this.http.put(this.url, user);
+    return this.http.put(this.url + "/" + id, user);
    }
 
 }

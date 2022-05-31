@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EducacionService } from 'src/app/services/educacion.service';
 import { Educacion } from 'src/app/models/Educacion';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 
 @Component({

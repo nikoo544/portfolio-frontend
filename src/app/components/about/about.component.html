@@ -1,23 +1,143 @@
-<div class="mx-5 md:mx-20" >
-<div class="flex h-56 rounded-md ">
-    <img class=" overflow-auto   object-cover rounded-t-md w-full " src="https://images.pexels.com/photos/3109807/pexels-photo-3109807.jpeg" alt="bannerlogo">
+<div class="mx-5 md:mx-20">
+  <div class="flex h-56 rounded-md">
+    <img
+      class="overflow-auto object-cover rounded-t-md w-full"
+      src="https://images.pexels.com/photos/3109807/pexels-photo-3109807.jpeg"
+      alt="bannerlogo"
+    />
+  </div>
+
+  <div
+    class="grid grid-cols-1 bg-slate-600 justify-items-center md:justify-items-start md:grid-cols-[300px_1fr] grid-rows-2 md:grid-rows-1 h-auto mb-10 pb-10 rounded-b-md"
+  >
+    <div
+      class="relative -top-[115px] flex flex-col justify-around text-center text-xl font-bold text-white md:ml-10"
+    >
+      <img
+        class="w-44 md:w-56 rounded-md hover:ring-4 ring-pink-500 pb-0 mb-0"
+        src="{{ urlFoto }}"
+        alt="img"
+      />
+
+      <span class="text-pink-500 hover:text-orange-500 pb-0 mb-0">{{
+        nombre
+      }}</span>
+      <span class="">Software Developer</span>
     </div>
-    
-<div class="grid grid-cols-1 bg-slate-600  justify-items-center md:justify-items-start md:grid-cols-[300px_1fr] grid-rows-2 md:grid-rows-1 h-auto mb-10 pb-10 rounded-b-md  ">
 
-<div class="relative -top-[115px] flex flex-col justify-around text-center text-xl font-bold text-white md:ml-10 ">
-    <img class=" w-44 md:w-56 rounded-md hover:ring-4 ring-pink-500 pb-0 mb-0" src="../../../assets/images/f41eddce2e215047f22b6f91793597a3.jpg" alt="img">
-    <span class="text-pink-500 hover:text-orange-500  pb-0 mb-0">{{nombre}}</span>
-    <span class="">Software Developer</span>
+    <div
+      class="md:text-center mx-5 text-xl md:text-[1.7rem] font-bold text-justify text-white md:m-10 md:items-end"
+    >
+      <div class="flex-col flex spa">
+        <span>About me: 😁 </span>
+        <span><br />{{ sobreMi }}</span>
+      </div>
+    </div>
+    <!-- Boton editar -->
+
+    <div class="flex justify-center items-center">
+      <button
+        class="bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded-full mx-20"
+        (click)="onEdit()"
+      >
+        Editar Perfil
+      </button>
+
+      <!--  -->
+    </div>
+  </div>
 </div>
 
-<div class="md:text-center mx-5 text-xl md:text-[1.7rem] font-bold text-justify text-white md:m-10 md:items-end ">
+<!-- Formulario editar perfil -->
 
-    <div class=" flex-col flex spa">
-    <span>About me: 😁 </span>
-    <span><br>{{sobremi}}</span>
+<div class="flex justify-center items-center">
+  <div class="w-full max-w-lg">
+    <form
+      class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      [formGroup]="form"
+      *ngIf="editMode === true"
+      (ngSubmit)="onSave()"
+    >
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">
+          Nombre
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="nombre"
+          type="text"
+          placeholder="Nombre"
+          formControlName="nombre"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">
+          Apellido
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="apellido"
+          type="text"
+          placeholder="Apellido"
+          formControlName="apellido"
+        />
+      </div>
 
-</div>
-</div> 
-</div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="sobremi">
+          Sobre mi
+        </label>
+        <textarea
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="sobreMi"
+          type="text"
+          placeholder="Sobre mi"
+          formControlName="sobreMi"
+        ></textarea>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">
+          Correo
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="nombre"
+          type="text"
+          placeholder="correo"
+          formControlName="correo"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">
+          Url avatar
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="nombre"
+          type="text"
+          placeholder="URL foto"
+          formControlName="urlFoto"
+        />
+      </div>
+
+      <div class="flex items-center justify-between">
+        <button
+          class="bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded-full"
+          type="submit"
+        >
+          Guardar
+        </button>
+
+        <button
+          class="bg-slate-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded-full"
+          type="button"
+          (click)="onCancel()"
+        >
+          Ocultar
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
